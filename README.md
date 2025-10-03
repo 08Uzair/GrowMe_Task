@@ -13,13 +13,12 @@ This project fetches artworks from the [Art Institute of Chicago API](https://ap
 
 ### 🏠 Homepage Table
 
-![Homepage Screenshot](<img width="1913" height="862" alt="image" src="https://github.com/user-attachments/assets/601a9be2-2139-42ea-9c51-86b846e7c365" />
-)
+<img width="1913" height="862" alt="image" src="https://github.com/user-attachments/assets/2b4e0096-522c-4e88-895c-25c1bd5263c2" />
+
 
 ### ✅ Row Selection with Persistence
 
-![Row Selection Screenshot](<img width="1918" height="870" alt="image" src="https://github.com/user-attachments/assets/164b58ba-cedb-4d06-9dc7-4ee277e4232d" />
-)
+<img width="1918" height="870" alt="image" src="https://github.com/user-attachments/assets/164b58ba-cedb-4d06-9dc7-4ee277e4232d" />
 
 ---
 
