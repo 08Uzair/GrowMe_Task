@@ -64,7 +64,6 @@ export default function ArtworksTable() {
   const handleCheckThis = async () => {
     let needed = selectCount;
     let newSelected: number[] = [];
-
     let currentPage = 1;
 
     while (needed > 0 && currentPage <= Math.ceil(totalRecords / rows)) {
@@ -113,157 +112,167 @@ export default function ArtworksTable() {
   };
 
   return (
-    <div className="p-6 bg-white border-black border-2 m-2 shadow-md rounded-lg relative">
-      <table className="min-w-full border rounded overflow-hidden">
-        <thead className="bg-gray-100 text-gray-700">
-          <tr>
-            <th className="p-3 border-b text-left flex items-center gap-2">
-              <input
-                type="checkbox"
-                className="big-checkbox"
-                checked={
-                  artworks.length > 0 &&
-                  artworks.every((a) => selectedIds.includes(a.id))
-                }
-                onChange={toggleSelectAll}
-              />
-              <button
-                onClick={() => setShowDropdown((p) => !p)}
-                className="p-1 hover:bg-gray-200 rounded"
-              >
-                <ChevronDown size={18} />
-              </button>
-            </th>
-            <th className="p-3 border-b text-left">ID</th>
-            <th className="p-3 border-b text-left">Title</th>
-            <th className="p-3 border-b text-left">Artist</th>
-            <th className="p-3 border-b text-left">Origin</th>
-          </tr>
-        </thead>
-        <tbody>
-          {artworks.map((art) => (
-            <tr
-              key={art.id}
-              className={`hover:bg-blue-50 ${
-                selectedIds.includes(art.id) ? "bg-blue-100" : ""
-              }`}
-            >
-              <td className="p-3 border-b">
-                <input
-                  type="checkbox"
-                  className="big-checkbox"
-                  checked={selectedIds.includes(art.id)}
-                  onChange={() => toggleSelect(art.id)}
-                />
-              </td>
-              <td className="p-3 border-b">{art.id}</td>
-              <td className="p-3 border-b">{art.title}</td>
-              <td className="p-3 border-b">{art.artist_display || "N/A"}</td>
-              <td className="p-3 border-b">
-                {art.place_of_origin || "Unknown"}
-              </td>
+    <div className="p-6 bg-white shadow-xl rounded-2xl border border-gray-200 m-4 relative">
+      {/* Table */}
+      <div className="overflow-x-auto rounded-lg">
+        <table className="min-w-full border-collapse">
+          <thead className="bg-gray-100 text-gray-700 text-sm uppercase">
+            <tr>
+              <th className="p-3 border-b text-left">
+                <div className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    className="w-4 h-4 accent-blue-500"
+                    checked={
+                      artworks.length > 0 &&
+                      artworks.every((a) => selectedIds.includes(a.id))
+                    }
+                    onChange={toggleSelectAll}
+                  />
+                  <button
+                    onClick={() => setShowDropdown((p) => !p)}
+                    className="p-1 hover:bg-gray-200 rounded transition"
+                  >
+                    <ChevronDown size={18} />
+                  </button>
+                </div>
+              </th>
+              <th className="p-3 border-b text-left">ID</th>
+              <th className="p-3 border-b text-left">Title</th>
+              <th className="p-3 border-b text-left">Artist</th>
+              <th className="p-3 border-b text-left">Origin</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {artworks.map((art) => (
+              <tr
+                key={art.id}
+                className={`transition-colors duration-200 ${
+                  selectedIds.includes(art.id)
+                    ? "bg-blue-50"
+                    : "hover:bg-gray-50"
+                }`}
+              >
+                <td className="p-3 border-b">
+                  <input
+                    type="checkbox"
+                    className="w-4 h-4 accent-blue-500"
+                    checked={selectedIds.includes(art.id)}
+                    onChange={() => toggleSelect(art.id)}
+                  />
+                </td>
+                <td className="p-3 border-b text-gray-800">{art.id}</td>
+                <td className="p-3 border-b text-gray-800">{art.title}</td>
+                <td className="p-3 border-b text-gray-600">
+                  {art.artist_display || "N/A"}
+                </td>
+                <td className="p-3 border-b text-gray-600">
+                  {art.place_of_origin || "Unknown"}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Dropdown */}
       {showDropdown && (
-        <div className="absolute left-12 top-12 bg-white shadow-lg border rounded p-4 w-64 animate-slide-down">
+        <div className="absolute left-14 top-14 bg-white shadow-lg border rounded-lg p-4 w-64 animate-fade-in">
           <input
             type="number"
             value={selectCount}
             onChange={(e) => setSelectCount(Number(e.target.value))}
             placeholder="Enter number"
-            className="w-full border rounded px-2 py-1 mb-2"
+            className="w-full border rounded px-3 py-2 mb-3 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
           />
           <button
             onClick={handleCheckThis}
-            className="w-full bg-blue-500 text-white py-1 rounded hover:bg-blue-600"
+            className="w-full bg-blue-500 text-white py-2 rounded-lg font-medium hover:bg-blue-600 transition"
           >
-            Check this
+            Select Items
           </button>
         </div>
       )}
-      <div className="mt-6 flex justify-center">
-        <div className="flex items-center flex-col gap-4 space-x-6">
-          <div className="flex items-center space-x-1">
+
+      {/* Pagination */}
+      <div className="mt-6 flex flex-col items-center gap-4">
+        <div className="flex items-center space-x-2">
+          <button
+            onClick={() => setPage(1)}
+            disabled={page === 1}
+            className={`p-2 rounded-lg border text-sm flex items-center justify-center ${
+              page === 1
+                ? "text-gray-400 cursor-not-allowed"
+                : "hover:bg-blue-50 text-gray-700"
+            }`}
+          >
+            <ChevronsLeft size={16} />
+          </button>
+          <button
+            onClick={() => setPage((p) => Math.max(1, p - 1))}
+            disabled={page === 1}
+            className={`p-2 rounded-lg border text-sm flex items-center justify-center ${
+              page === 1
+                ? "text-gray-400 cursor-not-allowed"
+                : "hover:bg-blue-50 text-gray-700"
+            }`}
+          >
+            <ChevronLeft size={16} />
+          </button>
+          {getPageNumbers().map((p) => (
             <button
-              onClick={() => setPage(1)}
-              disabled={page === 1}
-              className={`px-3 py-1 rounded-full border text-sm flex items-center justify-center ${
-                page === 1
-                  ? "text-gray-400 cursor-not-allowed"
-                  : "hover:bg-blue-100 text-gray-700"
+              key={p}
+              onClick={() => setPage(p)}
+              className={`px-3 py-1 rounded-lg border text-sm transition ${
+                p === page
+                  ? "bg-blue-500 text-white border-blue-500"
+                  : "hover:bg-blue-50 text-gray-700"
               }`}
             >
-              <ChevronsLeft size={16} />
+              {p}
             </button>
-            <button
-              onClick={() => setPage((p) => Math.max(1, p - 1))}
-              disabled={page === 1}
-              className={`px-3 py-1 rounded-full border text-sm flex items-center justify-center ${
-                page === 1
-                  ? "text-gray-400 cursor-not-allowed"
-                  : "hover:bg-blue-100 text-gray-700"
-              }`}
-            >
-              <ChevronLeft size={16} />
-            </button>
-            {getPageNumbers().map((p) => (
-              <button
-                key={p}
-                onClick={() => setPage(p)}
-                className={`px-3 py-1 rounded-full border text-sm ${
-                  p === page
-                    ? "bg-blue-500 text-white"
-                    : "hover:bg-blue-100 text-gray-700"
-                }`}
-              >
-                {p}
-              </button>
+          ))}
+          <button
+            onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+            disabled={page === totalPages}
+            className={`p-2 rounded-lg border text-sm flex items-center justify-center ${
+              page === totalPages
+                ? "text-gray-400 cursor-not-allowed"
+                : "hover:bg-blue-50 text-gray-700"
+            }`}
+          >
+            <ChevronRight size={16} />
+          </button>
+          <button
+            onClick={() => setPage(totalPages)}
+            disabled={page === totalPages}
+            className={`p-2 rounded-lg border text-sm flex items-center justify-center ${
+              page === totalPages
+                ? "text-gray-400 cursor-not-allowed"
+                : "hover:bg-blue-50 text-gray-700"
+            }`}
+          >
+            <ChevronsRight size={16} />
+          </button>
+        </div>
+
+        <div className="flex items-center space-x-2 text-sm text-gray-600">
+          <label htmlFor="rows">Rows per page:</label>
+          <select
+            id="rows"
+            className="border rounded px-3 py-1 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            value={rows}
+            onChange={(e) => {
+              setRows(Number(e.target.value));
+              setPage(1);
+            }}
+          >
+            {[5, 10, 25].map((size) => (
+              <option key={size} value={size}>
+                {size}
+              </option>
             ))}
-            <button
-              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-              disabled={page === totalPages}
-              className={`px-3 py-1 rounded-full border text-sm flex items-center justify-center ${
-                page === totalPages
-                  ? "text-gray-400 cursor-not-allowed"
-                  : "hover:bg-blue-100 text-gray-700"
-              }`}
-            >
-              <ChevronRight size={16} />
-            </button>
-            <button
-              onClick={() => setPage(totalPages)}
-              disabled={page === totalPages}
-              className={`px-3 py-1 rounded-full border text-sm flex items-center justify-center ${
-                page === totalPages
-                  ? "text-gray-400 cursor-not-allowed"
-                  : "hover:bg-blue-100 text-gray-700"
-              }`}
-            >
-              <ChevronsRight size={16} />
-            </button>
-          </div>
-          <div className="flex items-center space-x-2">
-            <label htmlFor="rows" className="text-sm text-gray-600">
-              Rows per page:
-            </label>
-            <select
-              id="rows"
-              className="border rounded px-3 py-1 text-sm"
-              value={rows}
-              onChange={(e) => {
-                setRows(Number(e.target.value));
-                setPage(1);
-              }}
-            >
-              {[5, 10, 25].map((size) => (
-                <option key={size} value={size}>
-                  {size}
-                </option>
-              ))}
-            </select>
-          </div>
+          </select>
         </div>
       </div>
     </div>
