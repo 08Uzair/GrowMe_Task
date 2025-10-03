@@ -1,0 +1,4 @@
+.big-checkbox {
+  transform: scale(1.5);  /* Increase size (1 = normal, 1.5 = 150%) */
+  margin: 5px;            /* Adjust spacing */
+}
