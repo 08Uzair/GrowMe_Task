@@ -3,9 +3,11 @@
 An interactive **Artworks Explorer** built with **Vite ⚡ | React + TypeScript | Tailwind CSS 💨**.
 This project fetches artworks from the [Art Institute of Chicago API](https://api.artic.edu/api/v1/artworks?page=1) and displays them in a **server-side paginated table** with row selection that persists across pages.
 
-✨ **Deployed Link**: [Click Here to Explore 🔗](https://growme-assignment-uzerqureshi.netlify.app)
+🌐 **Deployed Link**: [Click Here to Explore 🔗](https://growme-assignment-uzerqureshi.netlify.app)
 
 📂 **GitHub Repo**: [View Repository 💻](https://github.com/08Uzair/GrowMe_Task.git)
+
+🐋 **Docker Repo**: ``` docker pull 08uzair/grow_me_app:v1.0 ```
 
 ---
 
