@@ -1,73 +1,87 @@
-# React + TypeScript + Vite
+# 🎨 Artworks DataTable App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive **Artworks Explorer** built with **Vite ⚡ | React + TypeScript | Tailwind CSS 💨**.
+This project fetches artworks from the [Art Institute of Chicago API](https://api.artic.edu/api/v1/artworks?page=1) and displays them in a **server-side paginated table** with row selection that persists across pages.
 
-Currently, two official plugins are available:
+🌐 **Deployed Link**: [Click Here to Explore 🔗](https://growme-assignment-uzerqureshi.netlify.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+📂 **GitHub Repo**: [View Repository 💻](https://github.com/08Uzair/GrowMe_Task.git)
 
-## React Compiler
+🐋 **Docker Repo**: ``` docker pull 08uzair/grow_me_app:v1.0 ```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 📸 Screenshots
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 🏠 Homepage Table
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+<img width="1913" height="862" alt="image" src="https://github.com/user-attachments/assets/2b4e0096-522c-4e88-895c-25c1bd5263c2" />
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### ✅ Row Selection with Persistence
+
+<img width="1918" height="870" alt="image" src="https://github.com/user-attachments/assets/164b58ba-cedb-4d06-9dc7-4ee277e4232d" />
+
+---
+
+## 🚀 Features
+
+* ⚡ **Vite + TypeScript** for blazing-fast dev experience
+* 🎨 **Tailwind CSS** for modern, responsive UI
+* 🔄 **Server-side Pagination** (no memory leaks 🧠❌)
+* ✅ **Row Selection Persistence** across pages
+* 📌 **Custom Selection Panel** to manage chosen rows
+
+---
+
+## 🛠️ Tech Stack
+
+* **Frontend Framework:** React (with Vite + TypeScript)
+* **Styling:** Tailwind CSS
+* **API:** https://api.artic.edu/api/v1/artworks?page=1
+
+---
+
+## ⚙️ Installation & Setup
+
+Clone the repo and run locally:
+
+```bash
+# Clone the repository
+git clone https://github.com/08Uzair/GrowMe_Task.git
+
+# Navigate into the project
+cd growMe
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📑 Assignment Requirements Covered
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+✅ React app created with **Vite + TypeScript**
+
+✅ **Fetches data** from API and displays in table
+
+✅ Implemented **server-side pagination**
+
+✅ **Row selection** with checkboxes (single + multiple + all at once)
+
+✅ **Selection persists** across pages
+
+✅ No variable storing all rows
+
+✅ Deployed on **Netlify**
+
+---
+
+## 👨‍💻 Developer
+
+Made with ❤️ by **[Mohammad Uzer](https://github.com/08Uzair)**
+
+---
